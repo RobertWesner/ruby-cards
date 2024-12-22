@@ -1,0 +1,5 @@
+class Layer
+  @elements: Array[Element]
+
+  def push: (elements: Array[Element]) -> void
+end

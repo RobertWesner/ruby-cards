@@ -1,0 +1,4 @@
+class Card < Element
+  @background: untyped
+  @border: Array[untyped]
+end

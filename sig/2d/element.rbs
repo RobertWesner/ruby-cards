@@ -1,0 +1,14 @@
+class Element
+  attr_accessor x: Integer
+  attr_accessor y: Integer
+  attr_accessor width: Integer
+  attr_accessor height: Integer
+  attr_accessor mouse_entered: bool
+
+  def on_mouse_down: (x: Integer, y: Integer, button: String) -> void
+  def on_mouse_up: (x: Integer, y: Integer, button: String) -> void
+  def on_mouse_move: (x: Integer, y: Integer, button: String) -> void
+  def on_mouse_enter: (x: Integer, y: Integer, button: String) -> void
+  def on_mouse_leave: (x: Integer, y: Integer, button: String) -> void
+  def on: (event: String, call: Proc) -> untyped
+end

@@ -1,0 +1,6 @@
+class MouseHandler
+  @elements: Array[Element]
+
+  def register!: (elements: Element[]) -> void
+  def handle: (x: Integer, y: Integer) -> void
+end
