@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+require_relative "element"
 
 class ElementGroup < Element
   def initialize(x, y, width, height)
@@ -14,7 +14,15 @@ class ElementGroup < Element
   end
 
   def render
+    super
+
     @elements.each(&:render)
+  end
+
+  def hide
+    super
+
+    @elements.each(&:hide)
   end
 
   def on_mouse_down(x, y, button)

@@ -1,4 +1,5 @@
 require "ruby2d"
+require_relative "src/2d/element_group"
 require_relative "src/elements/card"
 require_relative "src/mouse_handler"
 
@@ -10,23 +11,24 @@ on :mouse do |event|
 end
 
 show_text = false
-cards = [
+cards_layer = ElementGroup.new(0, 0, 1280, 720).push(
   Card.new(10, 600, 75, 100)
     .on("mouse_down", lambda { show_text = !show_text }),
   Card.new(70, 600, 75, 100),
   Card.new(130, 600, 75, 100),
   Card.new(190, 600, 75, 100),
-]
+)
 
 last_frames = 0
 frames = 0
 last_fps = 0
 update do
+  # CLEAR>>>
+  cards_layer.hide
   clear
+  # <<<CLEAR
 
-  cards.map do |card|
-    card.render
-  end
+  cards_layer.render
 
   frames += 1
 

@@ -1,12 +1,16 @@
 class Element
+  @rendered: bool
+
   attr_accessor x: Integer
   attr_accessor y: Integer
   attr_accessor width: Integer
   attr_accessor height: Integer
+  attr_accessor rendered: bool
   attr_accessor mouse_entered: bool
 
   def listens_to_event?: -> bool
   def render: -> void
+  def hide: -> void
   def on_mouse_down: (x: Integer, y: Integer, button: String) -> void
   def on_mouse_up: (x: Integer, y: Integer, button: String) -> void
   def on_mouse_move: (x: Integer, y: Integer, button: String) -> void

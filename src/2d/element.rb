@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Element
-  attr_accessor :x, :y, :width, :height, :mouse_entered
+  attr_accessor :x, :y, :width, :rendered, :height, :mouse_entered
 
   def initialize(x, y, width, height)
     @x = x
@@ -16,6 +16,7 @@ class Element
       "mouse_enter" => [],
       "mouse_leave" => [],
     }
+    @rendered = false
 
     MouseHandler.register!(self)
   end
@@ -25,6 +26,11 @@ class Element
   end
 
   def render
+    @rendered = true
+  end
+
+  def hide
+    @rendered = false
   end
 
   def on_mouse_down(x, y, button)

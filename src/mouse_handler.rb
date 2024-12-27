@@ -10,23 +10,24 @@ module MouseHandler
     y = event.y
 
     fired = false
-    @elements.each do |element|
-      if element.listens_to_event? &&
+    @elements.reverse.each do |element|
+      if element.listens_to_event? && element.rendered &&
         x > element.x && x < element.x + element.width &&
         y > element.y && y < element.y + element.height
         if event.type == :move && !fired
+          fired = true
           element.on_mouse_move(x, y, event.button)
 
           unless element.mouse_entered
             element.mouse_entered = true
             element.on_mouse_enter(x, y, event.button)
 
-            @elements.each { |other_element|
+            @elements.each do |other_element|
               if other_element != element && other_element.mouse_entered
                 other_element.mouse_entered = false
                 other_element.on_mouse_leave(x, y, event.button)
               end
-            }
+            end
           end
         end
         if event.type == :up && !fired
@@ -37,7 +38,7 @@ module MouseHandler
           fired = true
           element.on_mouse_down(x, y, event.button)
         end
-      elsif element.mouse_entered && !fired
+      elsif element.mouse_entered
         fired = true
         element.mouse_entered = false
         element.on_mouse_leave(x, y, event.button)

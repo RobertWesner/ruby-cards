@@ -14,6 +14,8 @@ class Card < Element
   end
 
   def render
+    super
+
     y = @hovering ? @y - 10 : @y
     z = @hovering ? 10 : 1
     border = @hovering ? "yellow" : "gray"
