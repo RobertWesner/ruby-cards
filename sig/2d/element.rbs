@@ -1,4 +1,5 @@
 class Element
+  @handlers: untyped
   @rendered: bool
 
   attr_accessor x: Integer

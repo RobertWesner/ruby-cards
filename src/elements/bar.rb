@@ -1,16 +1,10 @@
 require_relative "../2d/element"
 
 class Bar < Element
-  def initialize(x, y, width, height)
-    super
+  def initialize(x, y, width, height, rtl = false)
+    super(x, y, width, height)
 
-    @rtl = false
-  end
-
-  def rtl!(rtl)
     @rtl = rtl
-
-    self
   end
 
   def listens_to_event?

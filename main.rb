@@ -2,11 +2,13 @@ require "ruby2d"
 
 require_relative "src/mouse_handler"
 require_relative "src/2d/element_group"
+
 require_relative "src/elements/card"
 require_relative "src/elements/bar"
+require_relative "src/elements/display"
 
 set width: 1280, height: 720
-set title: "Test", fullscreen: true
+# set title: "Ruby Cards", fullscreen: true
 
 on :mouse do |event|
   MouseHandler.handle(event)
@@ -17,19 +19,20 @@ show_text = false
 default_view = ElementGroup.new(0, 0, 1280, 750).push(
   # cards layer
   ElementGroup.new(0, 570, 1280, 150).push(
-    Card.new(10, 600, 75, 100)
+    Card.new(50, 595, 75, 100)
         .on("mouse_down", lambda { show_text = !show_text }),
-    Card.new(70, 600, 75, 100),
-    Card.new(130, 600, 75, 100),
-    Card.new(190, 600, 75, 100),
+    Card.new(140, 595, 75, 100),
+    Card.new(230, 595, 75, 100),
+    Card.new(320, 595, 75, 100),
   ),
   # inventory layer
   ElementGroup.new(830, 75, 450, 495),
   # hud layer
   ElementGroup.new(0, 0, 1280, 75)
     .push(
-      Bar.new(10, 20, 600, 35).rtl!(true),
+      Bar.new(10, 20, 600, 35, true),
       Bar.new(670, 20, 600, 35),
+      Display.new(610, 0, 60, 75, 'hud_shield.png')
     ),
 )
 

@@ -4,11 +4,11 @@ class ElementGroup < Element
   def initialize(x, y, width, height)
     super
 
-    @elements = []
+    @renders = []
   end
 
   def push(*elements)
-    @elements.push(*elements)
+    @renders.push(*elements)
     
     self
   end
@@ -16,13 +16,13 @@ class ElementGroup < Element
   def render
     super
 
-    @elements.each(&:render)
+    @renders.each(&:render)
   end
 
   def hide
     super
 
-    @elements.each(&:hide)
+    @renders.each(&:hide)
   end
 
   def on_mouse_down(x, y, button)

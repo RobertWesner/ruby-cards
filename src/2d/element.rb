@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Element
   attr_accessor :x, :y, :width, :rendered, :height, :mouse_entered
 
@@ -17,6 +15,7 @@ class Element
       "mouse_leave" => [],
     }
     @rendered = false
+    @renders = []
 
     MouseHandler.register!(self)
   end
