@@ -20,6 +20,10 @@ class Element
     MouseHandler.register!(self)
   end
 
+  def listens_to_event?
+    false
+  end
+
   def render
   end
 

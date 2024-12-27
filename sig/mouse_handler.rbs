@@ -1,6 +1,6 @@
 module MouseHandler
   @elements: Array[Element]
 
-  def register!: (elements: Array[Element]) -> void
-  def handle: (x: Integer, y: Integer) -> void
+  def self.register!: (elements: Array[Element]) -> void
+  def self.handle: (x: Integer, y: Integer) -> void
 end

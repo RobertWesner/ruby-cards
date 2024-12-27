@@ -5,6 +5,7 @@ class Element
   attr_accessor height: Integer
   attr_accessor mouse_entered: bool
 
+  def listens_to_event?: -> bool
   def render: -> void
   def on_mouse_down: (x: Integer, y: Integer, button: String) -> void
   def on_mouse_up: (x: Integer, y: Integer, button: String) -> void

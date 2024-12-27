@@ -9,6 +9,10 @@ class Card < Element
     @hovering = false
   end
 
+  def listens_to_event?
+    true
+  end
+
   def render
     y = @hovering ? @y - 10 : @y
     z = @hovering ? 10 : 1
