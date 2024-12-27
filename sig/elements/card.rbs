@@ -1,4 +1,5 @@
 class Card < Element
-  @background: untyped
-  @border: Array[untyped]
+  @background: String
+  @border: String
+  @hovering: bool
 end

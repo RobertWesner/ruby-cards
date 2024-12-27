@@ -4,105 +4,113 @@ class Card < Element
   def initialize(x, y, width, height)
     super
 
-    @border = []
+    @background = "white"
+    @border = "gray"
+    @hovering = false
+  end
 
-    # Create a new shape
-    @background = Rectangle.new(
+  def render
+    y = @hovering ? @y - 10 : @y
+    z = @hovering ? 10 : 1
+    border = @hovering ? "yellow" : "gray"
+
+    Line.new(
+      x1: @x,
+      y1: y,
+      x2: @x + @width,
+      y2: y,
+      z: z,
+      width: 5,
+      color: border,
+    )
+    Line.new(
+      x1: @x,
+      y1: y,
+      x2: @x,
+      y2: y + height,
+      z: z,
+      width: 5,
+      color: border,
+    )
+    Line.new(
+      x1: @x,
+      y1: y + height,
+      x2: @x + @width,
+      y2: y + height,
+      z: z,
+      width: 5,
+      color: border,
+    )
+    Line.new(
+      x1: @x + width,
+      y1: y,
+      x2: @x + width,
+      y2: y + height,
+      z: z,
+      width: 5,
+      color: border,
+    )
+    Circle.new(
       x: @x,
-      y: @y,
+      y: y,
+      z: z,
+      radius: 2.5,
+      color: border,
+    )
+    Circle.new(
+      x: @x + @width,
+      y: y,
+      z: z,
+      radius: 2.5,
+      color: border,
+    )
+    Circle.new(
+      x: @x,
+      y: y + @height,
+      z: z,
+      radius: 2.5,
+      color: border,
+    )
+    Circle.new(
+      x: @x + @width,
+      y: y + @height,
+      z: z,
+      radius: 2.5,
+      color: border,
+    )
+
+    Rectangle.new(
+      x: @x,
+      y: y,
+      z: z,
       width: @width,
       height: @height,
-      color: @color || "white",
+      color: @background,
     )
-
-    @border.push(
-      Line.new(
-        x1: @x,
-        y1: @y,
-        x2: @x + @width,
-        y2: @y,
-        width: 5,
-        color: "gray",
-      ),
-      Line.new(
-        x1: @x,
-        y1: @y,
-        x2: @x,
-        y2: @y + height,
-        width: 5,
-        color: "gray",
-      ),
-      Line.new(
-        x1: @x,
-        y1: @y + height,
-        x2: @x + @width,
-        y2: @y + height,
-        width: 5,
-        color: "gray",
-      ),
-      Line.new(
-        x1: @x + width,
-        y1: @y,
-        x2: @x + width,
-        y2: @y + height,
-        width: 5,
-        color: "gray",
-      ),
-      Circle.new(
-        x: @x,
-        y: @y,
-        radius: 2.5,
-        color: "gray"
-      ),
-      Circle.new(
-        x: @x + @width,
-        y: @y,
-        radius: 2.5,
-        color: "gray"
-      ),
-      Circle.new(
-        x: @x,
-        y: @y + @height,
-        radius: 2.5,
-        color: "gray"
-      ),
-      Circle.new(
-        x: @x + @width,
-        y: @y + @height,
-        radius: 2.5,
-        color: "gray"
-      ),
-    )
-
-    # Show the window
   end
 
   def on_mouse_enter(x, y, button)
     super
 
-    @border.each do |element|
-      element.color = "yellow"
-    end
+    @hovering = true
   end
 
   def on_mouse_leave(x, y, button)
     super
 
-    @border.each do |element|
-      element.color = "gray"
-    end
+    @hovering = false
     on_mouse_up(x, y, button)
   end
 
   def on_mouse_down(x, y, button)
     super
 
-    @background.color = "blue"
+    @background = "blue"
   end
 
   def on_mouse_up(x, y, button)
     super
 
-    @background.color = "white"
+    @background = "white"
   end
 end

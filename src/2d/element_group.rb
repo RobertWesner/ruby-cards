@@ -1,26 +1,20 @@
 # frozen_string_literal: true
 
-class Element
-  attr_accessor :x, :y, :width, :height, :mouse_entered
-
+class ElementGroup < Element
   def initialize(x, y, width, height)
-    @x = x
-    @y = y
-    @width = width
-    @height = height
-    @mouse_entered = false
-    @handlers = {
-      "mouse_down" => [],
-      "mouse_up" => [],
-      "mouse_move" => [],
-      "mouse_enter" => [],
-      "mouse_leave" => [],
-    }
+    super
 
-    MouseHandler.register!(self)
+    @elements = []
+  end
+
+  def push(*elements)
+    @elements.push(*elements)
+    
+    self
   end
 
   def render
+    @elements.each(&:render)
   end
 
   def on_mouse_down(x, y, button)

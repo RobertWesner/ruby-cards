@@ -1,13 +1,11 @@
-class MouseHandler
-  def initialize
-    @elements = []
+module MouseHandler
+  @elements = []
+
+  def self.register!(*elements)
+    @elements.push(*(elements.flatten))
   end
 
-  def register!(*elements)
-    @elements.push(*elements)
-  end
-
-  def handle(event)
+  def self.handle(event)
     x = event.x
     y = event.y
 

@@ -1,0 +1,5 @@
+class ElementGroup < Element
+  @elements: Array[Element]
+
+  def push: -> self
+end
